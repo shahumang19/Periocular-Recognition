@@ -18,19 +18,19 @@ class FaceEyeDetectionDlib:
     @staticmethod
     def _process_eye_box_(box):
         box = list(box)
-        box[1] -= int(box[3])
-        box[3] += int(box[3])*2
+        box[1] -= int(box[3]*4)
+        box[3] += int(box[3]*3)*2
 
-        box[0] -= int(box[2]*0.2)
-        box[2] += int(box[2]*0.2)*2
+        box[0] -= int(box[2]*0.6)
+        box[2] += int(box[2]*0.6)*2
         return box
 
     @staticmethod
     def _preprocess_face_box_(rect):
         box = face_utils.rect_to_bb(rect)
-        box = list(box)
-        box[1] -= int(box[3]*0.1)
-        box[3] += int(box[3]*0.1)
+        # box = list(box)
+        # box[1] -= int(box[3]*0.1)
+        # box[3] += int(box[3]*0.1)
         return box
 
     def detect_faces(self, image):
@@ -105,12 +105,12 @@ class FaceEyeDetectionDlib:
                     (x,y,w,h) = faceBB
                     cv2.rectangle(image_cp, (x,y), (x+w, y+h), (0,0,255), int(0.01*image_cp.shape[0]))
                     (x,y,w,h) = leyeBB
-                    cv2.rectangle(image_cp, (x,y), (x+w, y+h), (0,0,255), int(0.01*image_cp.shape[0]))
+                    cv2.rectangle(image_cp, (x,y), (x+w, y+h), (0,255,255), int(0.01*image_cp.shape[0]))
                     (x,y,w,h) = reyeBB
-                    cv2.rectangle(image_cp, (x,y), (x+w, y+h), (0,0,255), int(0.01*image_cp.shape[0]))
+                    cv2.rectangle(image_cp, (x,y), (x+w, y+h), (255,0,255), int(0.01*image_cp.shape[0]))
 
             except Exception as e:
-                print(f"[ERROR] {e}")
+                print(f"[ERROR] Draw {e}")
                 
             return image_cp
 
@@ -120,7 +120,7 @@ if __name__ == "__main__":
 
     count = 0
     fd = FaceEyeDetectionDlib(join("models","shape_predictor_68_face_landmarks.dat"))
-    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     
     try:
         while True:
