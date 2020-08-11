@@ -1,0 +1,1 @@
+For PR with left and right eye separated we need high resolution camera.
