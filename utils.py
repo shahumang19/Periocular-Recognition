@@ -164,7 +164,7 @@ def search(query, index, neighbours=3):
     return index.get_nns_by_vector(query, neighbours, include_distances=True)
   
 
-def get_predictions(face_embeddings, annoy_index, labels, thresh=0.50):
+def get_predictions(face_embeddings, annoy_index, labels, thresh=0.50, name_count_thresh=1):
     """
     Returns the predictions of the faces passed as parameter from annoy object
     face_embeddings : face embeddings of multiple faces
@@ -174,11 +174,11 @@ def get_predictions(face_embeddings, annoy_index, labels, thresh=0.50):
     """
     predictions = []
     
-    for ix, face_emb in enumerate(face_embeddings):
-        out = search(face_emb, annoy_index)
+    for face_emb in face_embeddings:
+        out = search(face_emb, annoy_index, neighbours=name_count_thresh)
         name_count = [labels[ind] for ind in out[0]]
         name_count = name_count.count(name_count[0])
-        if name_count >= 3:
+        if name_count >= name_count_thresh:
             index = out[0][0]
             dist = out[1][0]
             
