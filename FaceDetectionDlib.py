@@ -7,12 +7,12 @@ import cv2
 
 
 class FaceDetectAndAlign:
-    def __init__(self, shape_predictor_path="models\\shape_predictor_68_face_landmarks.dat", align=True):
+    def __init__(self, shape_predictor_path="models\\shape_predictor_68_face_landmarks.dat", align=True, desiredFaceWidth=400):
         try:
             self.detector = dlib.get_frontal_face_detector()
             if align:
                 self.predictor = dlib.shape_predictor(shape_predictor_path)
-                self.aligner = FaceAligner(self.predictor, desiredFaceWidth=400)
+                self.aligner = FaceAligner(self.predictor, desiredFaceWidth=desiredFaceWidth)
             self.align = align
         except Exception as e:
             print(f"[ERROR] {self.__class__.__name__} model {shape_predictor_path} not found... : {e}")
@@ -26,7 +26,8 @@ class FaceDetectAndAlign:
                 rects = sorted(rects, key=lambda rect: rect_to_bb(rect)[2]*rect_to_bb(rect)[3], reverse=True)[0:1]
         except Exception as e:
             print(f"[ERROR] {self.__class__.__name__} detect_faces : {e}")
-        return rects
+        finally:
+            return rects
 
     def extract_faces(self, image, rects):
         extracted_faces = []
@@ -48,8 +49,8 @@ class FaceDetectAndAlign:
                     extracted_faces.append(face)
         except Exception as e:
             print(f"[ERROR] {self.__class__.__name__} extract_faces : {e}")
-
-        return extracted_faces
+        finally:
+            return extracted_faces
 
     @classmethod
     def rect_to_bb(cls, rects):

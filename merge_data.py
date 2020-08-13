@@ -1,11 +1,14 @@
 import os, pickle
 import numpy as np
 
-F1 = "data\\leye_features1.pkl"
-F2 = "data\\leye_features2.pkl"
-F3 = "data\\reye_features1.pkl"
-F4 = "data\\reye_features2.pkl"
-FILES = [F1, F2, F3, F4]
+# F1 = "data\\leye_features1.pkl"
+# F2 = "data\\leye_features2.pkl"
+# F3 = "data\\reye_features1.pkl"
+# F4 = "data\\reye_features2.pkl"
+F1 = "data\\hface_features.pkl"
+F2 = "data\\hface_office_features.pkl"
+
+FILES = [F1, F2]
 
 features, labels = None, None
 
@@ -25,7 +28,7 @@ print(features.shape)
 print(len(labels))
 
 
-fn = "data\\merged_features.pkl"
+fn = "data\\merged_face_features.pkl"
 
 with open(fn, "wb") as fl:
     pickle.dump({"features": features, "labels": labels}, fl)
