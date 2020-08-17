@@ -1,1 +1,2 @@
-For PR with left and right eye separated we need high resolution camera.
+Training of Periocular region based on lfw dataset.
+Repo : https://github.com/davidsandberg/facenet
