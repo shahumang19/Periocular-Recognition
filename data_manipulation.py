@@ -6,8 +6,8 @@ from os import listdir, mkdir
 from os.path import isfile, isdir, join, exists
 from FaceDetectionDlib import FaceDetectAndAlign
 
-BASE_DIR = r"D:\WORK\Periocular-Recognition\images\lfw\lfw-deepfunneled"
-OUT1 = r"D:\WORK\Periocular-Recognition\images\lfw\lfw_cropped"
+BASE_DIR = r"D:\WORK\Periocular-Recognition\images\casia_batch\casia_batch\1"
+OUT1 = r"D:\WORK\Periocular-Recognition\images\casia_batch\casia_aligned_cropped"
 
 
 def crop_data(base_path, out_path):
@@ -16,7 +16,7 @@ def crop_data(base_path, out_path):
     """
     
     # try:
-    fd = FaceDetectAndAlign(desiredFaceWidth=128, align=False)
+    fd = FaceDetectAndAlign(desiredFaceWidth=512)
     dirs = [f for f in listdir(base_path) if isdir(join(base_path, f))]
     
     for d in tqdm(dirs):
