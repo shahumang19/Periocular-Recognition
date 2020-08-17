@@ -67,6 +67,6 @@ class Facenet():
     
 if __name__ == "__main__":
     fn = Facenet()
-    tt = cv2.imread("data\\1.jpg")
+    tt = cv2.imread("images\\IMG-2216.JPG")
     print("------------------------------------------------")
-    print(fn.get_embeddings([None], fn))
+    print(fn.get_embeddings([tt]))
