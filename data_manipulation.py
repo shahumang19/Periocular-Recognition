@@ -6,8 +6,8 @@ from os import listdir, mkdir
 from os.path import isfile, isdir, join, exists
 from FaceDetectionDlib import FaceDetectAndAlign
 
-BASE_DIR = r"D:\WORK\Periocular-Recognition\images\casia_batch\casia_batch\1"
-OUT1 = r"D:\WORK\Periocular-Recognition\images\casia_batch\casia_aligned_cropped"
+BASE_DIR = r"C:\Umang\Periocular-Recognition\images\CASIA\CASIA-WebFace"
+OUT1 = r"C:\Umang\Periocular-Recognition\images\CASIA\CASIA-ALIGNED-CROPPED"
 
 
 def crop_data(base_path, out_path):
@@ -28,9 +28,12 @@ def crop_data(base_path, out_path):
                 img = cv2.imread(join(current_dir, f))
                 fbox = fd.detect_faces(img, biggest=True)
                 if len(fbox) > 0:
-                    face = fd.extract_faces(img, fbox)[0]
-                    if face is not None:
-                        cv2.imwrite(join(out_dir, f), face)
+                    faces = fd.extract_faces(img, fbox)
+                    if len(faces) > 0:
+                        # print(faces[0].shape)
+                        if faces[0] is not None:
+                            if faces[0].shape[0] > 0 and faces[0].shape[1] > 0:
+                                cv2.imwrite(join(out_dir, f), faces[0])
         else:
             continue
     # except Exception as e:

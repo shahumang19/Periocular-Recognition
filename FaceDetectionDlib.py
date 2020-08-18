@@ -41,7 +41,7 @@ class FaceDetectAndAlign:
                     if len(rects1) > 0:
                         (x1, y1, w1, h1) = rect_to_bb(rects1[0])
                         faceAligned = faceAligned[y1:y1 + h1//2, x1:x1 + w1]
-                    extracted_faces.append(faceAligned)
+                        extracted_faces.append(faceAligned)
             else:
                 for rect in rects:
                     (x1, y1, w1, h1) = rect_to_bb(rect)
