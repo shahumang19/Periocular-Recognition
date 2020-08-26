@@ -1,1 +1,16 @@
 For PR with left and right eye separated we need high resolution camera.
+
+
+PR training param:
+Method : davidsandberg facenet
+Training :
+	dataset : Casia Webface
+	Identities : 10575
+	Images : 400,000+
+Testing :
+	dataset : LFW
+	Identities : 575
+	Images: 6200+
+
+Accuracy : 95.03%
+modelname : facenet_pr_keras.h5

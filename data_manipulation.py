@@ -6,7 +6,7 @@ from os import listdir, mkdir
 from os.path import isfile, isdir, join, exists
 from FaceDetectionDlib import FaceDetectAndAlign
 
-BASE_DIR = r"D:\WORK\Periocular-Recognition\images\essex_data\data_5"
+BASE_DIR = r"D:\WORK\Periocular-Recognition\images\essex_data\data"
 OUT1 = r"D:\WORK\Periocular-Recognition\images\essex_data\data_5_cropped_half"
 
 
@@ -16,7 +16,7 @@ def crop_data(base_path, out_path):
     """
     
     # try:
-    fd = FaceDetectAndAlign(desiredFaceWidth=256)
+    fd = FaceDetectAndAlign(desiredFaceWidth=512)
     dirs = [f for f in listdir(base_path) if isdir(join(base_path, f))]
     
     for d in tqdm(dirs):
@@ -37,7 +37,7 @@ def crop_data(base_path, out_path):
     #     print(f"[ERROR] get_data : {e}")
 
 
-# crop_data(BASE_DIR, OUT1)
+crop_data(BASE_DIR, OUT1)
 
 
 
@@ -48,5 +48,5 @@ dirs = [f for f in listdir(OUT1) if isdir(join(OUT1, f))]
 for d in dirs:
     current_dir = join(OUT1, d)
     if len(os.listdir(current_dir)) == 0:
-        # os.rmdir(current_dir)
+        os.rmdir(current_dir)
         print(d)

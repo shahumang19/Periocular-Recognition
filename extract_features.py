@@ -76,9 +76,10 @@ def get_data(dir_path):
 
 images, labels = get_data(BASE_DIR)
 
-facenet = Facenet()
+facenet = Facenet("models\\facenet_pr_keras.h5")
 features = facenet.get_embeddings(images, verbose=1)
 
+# fn = "data\\hface_features.pkl"
 fn = "data\\hface_office_features.pkl"
 with open(fn, "wb") as fl:
     pickle.dump({"features": features, "labels": labels}, fl)

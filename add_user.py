@@ -25,7 +25,7 @@ if __name__ == "__main__":
     count, fc, max_wait_count = 0, 0, 5
     face_dict = {}
 
-    fd =  FaceDetectAndAlign(desiredFaceWidth=256)
+    fd =  FaceDetectAndAlign(desiredFaceWidth=512)
     cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
     cap.set(3, 1280)
     cap.set(4, 720)

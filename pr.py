@@ -10,8 +10,8 @@ import cv2
 if __name__ == "__main__":
     count, fc = 0, 0
 
-    fd =  FaceDetectAndAlign(align=True ,desiredFaceWidth=256)
-    facenet = Facenet()
+    fd =  FaceDetectAndAlign(align=True ,desiredFaceWidth=512)
+    facenet = Facenet("models\\facenet_pr_keras.h5")
 
     data = u.read_data("data\\merged_face_features.pkl")
     labels = data["labels"]
@@ -34,7 +34,7 @@ if __name__ == "__main__":
                 features = facenet.get_embeddings(faces)
 
                 if features is not None:
-                    predictions = u.get_predictions(features, index, labels, thresh=0.6, name_count_thresh=1)
+                    predictions = u.get_predictions(features, index, labels, thresh=0.5, name_count_thresh=1)
                     print(predictions)
                     frame = u.draw_predictions(frame, fd.rect_to_bb(rects), predictions)
 
