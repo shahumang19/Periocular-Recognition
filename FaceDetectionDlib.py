@@ -1,6 +1,5 @@
 from imutils.face_utils import FaceAligner
 from imutils.face_utils import rect_to_bb
-import argparse
 import imutils
 import dlib
 import cv2
